@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игровое поле</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body> 
+       <div class="block"><!-- Блок выбора вопроса,переход на страницу решений,лого-ссылка н сайт АГ -->
+        <a href="https://www.acoustic.ru/" target="_blank"><img src="logo/logo1.png"></a>
+        <div class="btn_block">  <!-- Блок  кнопок -->
+            <button  id ='butt_choose'>ВЫБРАТЬ ВОПРОС</button><br>
+            <button  id ='butt_noise'>ПЕРЕЙТИ К РЕШЕНИЮ</button><br>
+        </div>
+        <div><!-- Ссылка на сторонний ресурс с холстом для рисования -->
+            <a href="https://wbo.ophir.dev/boards/xFtxHTXgLmZ6O0WaBwYIiUxdTrZpMBE17gvQAptAFcY-" target="_blank" class="btn_canvas" id="canv"><i>Черновик</i></a>
+        </div>
+        <div class="random_questions" id="p1"><!-- Поле отображения выбранного вопроса -->
+        </div>
+    </div> 
+    <div class="block_apart" id ="ba"><!-- Блок поля выбора решений -->
+        <div id="block_apart"><!-- Разметка расположения стен помещения-->
+            <div style="height: 525px;width: 740px;left: -315px;position: absolute;border: solid 2px grey;z-index: 3;"><!-- Внешняя рамка -->
+                <div style="height: 426px;width: 643px;left: 44px;top: 46px;position: absolute;border: solid 2px grey;"><!-- Внутренняя рамка -->
+                </div>
+            </div>
+        </div>
+        <canvas id="canvas"><!-- Блок расположения холста для рисования внутри помещения -->
+        </canvas>
+        <button class="btn_option" id ='butt_choose_apart'><!-- Кнопка выбора типа квартиры -->
+            ВЫБРАТЬ ВАРИАНТ КВАРТИРЫ
+        </button><br>
+        <button class="btn_option" id = "main_page"><!-- Кнопка возврата на главную -->
+            ВЕРНУТЬСЯ НА ГЛАВНУЮ
+        </button>
+        <!-- Блок выбора конструций  -->
+        <form class="form">
+            <select class="floor" name="F" id="floor" style="z-index: 2;"><!-- Выбор типа пола -->
+            </select>
+            <select class="ceiling" name="C" id="ceiling" style="z-index: 2;"><!-- Выбор типа потолка -->
+            </select>
+        </form>
+        <form class="frame" action="">
+            <label >
+                1
+            </label>
+            <select class="wall" name="L" id="frame1" ><!-- Выбор типа конструкций левой стены --> 
+            </select>
+            <label >
+                2
+            </label>
+            <select class="wall" name="L" id="frame2"><!-- Выбор типа конструкций верхней стены --> 
+            </select>
+            <label >
+                3
+            </label>
+            <select class="wall" name="L" id="frame3"><!-- Выбор типа конструкций правой стены --> 
+            </select>
+            <label >
+                4
+            </label>
+            <select class="wall" name="L" id="frame4"><!-- Выбор типа конструкций нижней стены --> 
+            </select>
+            <label >
+            </label>
+            <!-- <select class="partition" name="W" id="partition">--><!-- Выбор типа перегородки --> 
+            <!-- </select>  -->
+        </form>
+            <div class="label_instruct"><!-- Блок бегущей строки -->
+                <i style="font-size: 10px;">инструкция к полю для рисования</i>            
+                <marquee class = "instruct"  direction = "right">
+                    <h3> * R &nbsp; - &nbsp; воспроизвести &nbsp;  сохраенное &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                        * S &nbsp; - &nbsp;  сохранить &nbsp; содержимое &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      * C &nbsp; - &nbsp; очистить &nbsp; содержимое &nbsp; поля 
+                    </h3>
+                </marquee> 
+             </div>  
+        <!-- Блок для вставки изображений конструкций -->
+        <div class="test" style="    
+                height: 500px;
+                z-index: 3;
+                top: -150px;
+                left: -350px;
+                position: absolute;">
+        <!-- Изображение для верхней стены -->
+            <img  class="img_constr" id ="topWall" style = "
+                height: 626px;
+                margin-left: 388px;
+                margin-top: -98px;
+                transform: rotate(270deg);
+                z-index: 2"
+            src="" alt=""></img>
+        <!-- Изображение для нижней стены -->
+            <img class="img_constr" id="bottomWall" style = "
+                height: 626px;
+                margin-left: 387px;
+                margin-top: 293px;
+                transform: rotate(90deg);
+                z-index: 2;" 
+            src="" alt=""></img>
+        <!-- Изображение для правой стены --> 
+            <img class="img_constr" id="rightWall" style = "
+                height: 423px;
+                margin-left: 678px;
+                margin-top: 199px;
+                transform: rotate(0deg);
+                z-index: 2;"
+            src="" alt=""></img>
+        <!-- Изображение для левой стены -->    
+            <img class="img_constr" id="leftWall" style = "
+                height: 423px;
+                margin-left: 90px;
+                margin-top: 199px;
+                transform: rotate(180deg);
+                z-index: 2;"
+            src="" alt=""></img>
+        <!-- Изображение для потолка -->    
+            <img class="img_constr" id="ceiling_img" style = "
+                height: 93px;
+                /* width: 93px; */
+                margin-left: 825px;
+                margin-top: 172px;
+                transform: rotate(270deg);
+                z-index: 2;"
+            src="" alt=""></img>
+        <!-- Изображение для пола -->    
+            <img class="img_constr" id="floor_img" style = "
+                height: 93px;
+                margin-left: 835px;
+                margin-top: 508px;
+                transform: rotate(270deg);
+                z-index: 2;"
+            src="" alt=""></img>
+        </div>
+    </div>
+        <!-- НЕ удалять!!! --> 
+        <div id="123" style=" height: 640px;
+          margin-left: 396px;
+          margin-top: 295px;
+          transform: rotate(90deg);
+          z-index: 2;"> 
+        </div>       
+<script src="js/script.js"></script>
+<script src="js/apart.js"></script>
+<script src="js/DB.js"></script>
+<script src="js/canvas.js"></script>
+</body>
+</html>
